@@ -6,7 +6,7 @@
 --
 --    k2: start    k3: restart
 
-engine.name = "PolyPerc" -- standard issue... for now?!?!
+engine.name = "KarplusRings" -- George changed this 
 song = {} -- our song
 softclock = include("lib/softclock") -- global clock
 parts = include("lib/parts") -- musical things
@@ -17,6 +17,18 @@ local function super_tick()
 end 
 
 function init()
+  
+ -- Env.perc(0.05, 1, 1, -4).test.plot;
+ -- Env.perc(0.001, 1, 1, -4).test.plot;    // sharper attack
+-- Env.perc(0.001, 1, 1, -8).test.plot;    // change curvature
+-- Env.perc(1, 0.01, 1, 4).test.plot;    // reverse envelope
+  
+  
+  
+  
+  
+  
+  
   parts.init()
   graphics.init()
   song.is_screen_dirty = true
@@ -35,6 +47,8 @@ function init()
   softclock.add('c', 3/4, function(phase) parts:dotted_half_notes(phase) end)
   softclock.add('d', 11/17, function(phase) parts:crazy_part(phase) end)
   softclock.add('e', 1/16, function(phase) parts:sixteenth_notes(phase) end)
+  softclock.add('e', 1/32, function(phase) parts:thirtytwo_notes(phase) end) -- i added this in Zach to learn about your code
+  
   super_metro:start()
   redraw()
 end
@@ -62,6 +76,7 @@ end
 
 function enc(e, d)
   print(e, d, "???")
+  
   song.is_screen_dirty = true
 end
 
